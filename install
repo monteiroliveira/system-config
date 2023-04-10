@@ -75,6 +75,7 @@ install_fonts_packages(){
                              ttf-ubuntu-font-family      \
                              powerline-fonts             \
                              powerline                   \
+                             nerd-fonts                  \
                              fontconfig || error "Some package can't be installed"
 
     if $(pacman -Qq | grep -qs "ttf-times-new-roman"); then
