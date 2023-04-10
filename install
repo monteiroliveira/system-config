@@ -75,7 +75,56 @@ install_fonts_packages(){
                              ttf-ubuntu-font-family      \
                              powerline-fonts             \
                              powerline                   \
-                             nerd-fonts                  \
+                             ttf-victor-mono-nerd        \
+                             ttf-ubuntu-nerd             \
+                             ttf-ubuntu-mono-nerd        \
+                             ttf-tinos-nerd              \
+                             ttf-terminus-nerd           \
+                             ttf-space-mono-nerd         \
+                             ttf-sourcecodepro-nerd      \
+                             ttf-sharetech-mono-nerd     \
+                             ttf-roboto-mono-nerd        \
+                             ttf-proggyclean-nerd        \
+                             ttf-profont-nerd            \
+                             ttf-noto-nerd               \
+                             ttf-mplus-nerd              \
+                             ttf-mononoki-nerd           \
+                             ttf-monoid-nerd             \
+                             ttf-monofur-nerd            \
+                             ttf-meslo-nerd              \
+                             ttf-lilex-nerd              \
+                             ttf-liberation-mono-nerd    \
+                             ttf-lekton-nerd             \
+                             ttf-jetbrains-mono-nerd     \
+                             ttf-iosevka-nerd            \
+                             ttf-inconsolata-nerd        \
+                             ttf-inconsolata-lgc-nerd    \
+                             ttf-inconsolata-go-nerd     \
+                             ttf-ibmplex-mono-nerd       \
+                             ttf-iawriter-nerd           \
+                             ttf-heavydata-nerd          \
+                             ttf-hack-nerd               \
+                             ttf-go-nerd                 \
+                             ttf-firacode-nerd           \
+                             ttf-fantasque-nerd          \
+                             ttf-dejavu-nerd             \
+                             ttf-daddytime-mono-nerd     \
+                             ttf-cousine-nerd            \
+                             ttf-bitstream-vera-mono-nerd\
+                             ttf-bigblueterminal-nerd    \
+                             ttf-arimo-nerd              \
+                             ttf-anonymouspro-nerd       \
+                             ttf-agave-nerd              \
+                             ttf-3270-nerd               \
+                             otf-overpass-nerd           \
+                             otf-opendyslexic-nerd       \
+                             otf-hermit-nerd             \
+                             otf-hasklig-nerd            \
+                             otf-firamono-nerd           \
+                             otf-droid-nerd              \
+                             otf-codenewroman-nerd       \
+                             otf-cascadia-code-nerd      \
+                             otf-aurulent-nerd           \
                              fontconfig || error "Some package can't be installed"
 
     if $(pacman -Qq | grep -qs "ttf-times-new-roman"); then
