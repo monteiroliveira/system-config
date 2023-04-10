@@ -219,7 +219,11 @@ install_theme_packages(){
                             papirus-icon-theme  \
                             breeze-icons || error "Some package can't be installed"
 
-    yay -S  sweet-gtk-theme-dark
+    if $(pacman -Qq | grep -qs "sweet-gtk-theme-dark"); then
+        echo "sweet-gtk-theme-dark is already installed --skipped"
+    else
+        yay -S  sweet-gtk-theme-dark
+    fi
 }
 
 install_audio_packages(){
