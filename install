@@ -113,7 +113,7 @@ install_essential_packages(){
     echo
     sudo pacman --needed -S pacman-contrib              \
                             alacritty                   \
-                            nitrogem                    \
+                            nitrogen                    \
                             lxsession                   \
                             lxappearance                \
                             volumeicon                  \
@@ -121,7 +121,7 @@ install_essential_packages(){
                             picom                       \
                             network-manager-applet      \
                             networkmanager              \
-                            udiskie2                    \
+                            udisks2                     \
                             net-tools                   \
                             rofi                        \
                             qpwgraph                    \
