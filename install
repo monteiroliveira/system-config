@@ -1,0 +1,309 @@
+#!/bin/bash
+
+if [ "$(id -u)" = 0 ]; then
+    echo "==========================================================================================="
+    echo "==============This script MUST NOT be run as root user since it makes changes=============="
+    echo "=So run this script as a normal user.You will be asked for a sudo password when necessary.="
+    echo "==========================================================================================="
+    exit 1
+fi
+
+export NEWT_COLORS="
+root=,blue
+window=,black
+shadow=,blue
+border=blue,black
+title=blue,black
+textbox=blue,black
+radiolist=black,black
+label=black,blue
+checkbox=black,blue
+compactbutton=black,blue
+button=black,red"
+
+error(){
+    clear; printf "ERROR! : %s\\n" "$1" >&2; exit 1;
+}
+
+wellcome_screen(){
+    whiptail --title "My personal installation script" --msgbox "This script will install my personal system configuration and packages in arch lixux distros, that script is for my personal use but any persol can use this script. WARNING: Run this script at your own risk. Your sudo password is only for installing packages and enable in systemd..\\n" 16 80
+}
+
+end_screen(){
+    whiptail --title "My personal installation script" --msgbox "Installation in ended\\n" 16 80
+}
+
+wrong_distro(){
+    whiptail --title "My personal installation script" --msgbox "Sorry, this script only work in Arch linux.\\n" 16 80 | error "User choose to exit."
+}
+
+run_in_notebook(){
+    whiptail --title "My personal installation script" --yesno "Are you running this script in notebook?" 8 60
+}
+
+install_yay(){
+    echo
+    echo "Installing yay for AUR packages"
+    echo "If necessary install base-devel and git"
+    sudo pacman -S --needed git base-devel
+    cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd $HOME
+    echo "Yay installed"
+    echo
+}
+
+install_fonts_packages(){
+    echo
+    echo "============================================="
+    echo "==========Installing fonts packages=========="
+    echo "============================================="
+    echo
+    sudo pacman -S  adobe-source-code-pro-fonts \
+                    adobe-source-sans-fonts     \
+                    awesome-terminal-fonts      \
+                    noto-fonts                  \
+                    noto-fonts-cjk              \
+                    noto-fonts-emoji            \
+                    noto-fonts-extra            \
+                    ttf-powerline               \
+                    ttf-joypixels               \
+                    ttf-jetbrains-mono          \
+                    ttf-croscore                \
+                    ttf-dejavu                  \
+                    ttf-ubuntu-font-family      \
+                    powerline-fonts             \
+                    powerline                   \
+                    fontconfig
+
+    yay -S  nerd-fonts-complete  \
+            ttf-times-new-roman
+}
+
+initialize_packages(){
+    sudo systemctl enable --now ufw.service
+    sudo systemctl enable --now NetworkManager.service
+
+    systemctl --user enable pipewire-pulse.service
+
+    ufw enable
+    xdg-user-dirs-update
+}
+
+install_xorg(){
+    sudo pacman --needed -S xorg-fonts-encodings    \
+                            xorg-server             \
+                            xorg-server-common      \
+                            xorg-setxkbmap          \
+                            xorg-xauth              \
+                            xorg-xinit              \
+                            xorg-xprop              \
+                            xorg-xrandr             \
+                            xorg-xrdb               \
+                            xorg-xset               \
+                            xorg-xsetroot
+}
+
+install_essential_packages(){
+    echo
+    echo "============================================="
+    echo "========Installing essential packages========"
+    echo "============================================="
+    echo
+    sudo pacman --needed -S pacman-contrib              \
+                            alacritty                   \
+                            nitrogem                    \
+                            lxsession                   \
+                            lxappearance                \
+                            volumeicon                  \
+                            dunst                       \
+                            picom                       \
+                            network-manager-applet      \
+                            networkmanager              \
+                            udiskie2                    \
+                            net-tools                   \
+                            rofi                        \
+                            qpwgraph                    \
+                            vim                         \
+                            ufw                         \
+                            gufw                        \
+                            starship                    \
+                            fish                        \
+                            exa                         \
+                            bat                         \
+                            fd                          \
+                            ripgrep                     \
+                            lfs                         \
+                            ispell                      \
+                            aspell                      \
+                            aspell-en                   \
+                            aspell-pt                   \
+                            arch-wiki-docs              \
+                            zip                         \
+                            unzip                       \
+                            ueberzug                    \
+                            neofetch                    \
+                            jdk-openjdk                 \
+                            jre-openjdk                 \
+                            texinfo                     \
+                            texlive-bin                 \
+                            texlive-core                \
+                            texlive-latexextra          \
+                            polkit                      \
+                            thunar                      \
+                            htop                        \
+                            xdg-user-dirs               \
+                            ranger                      \
+                            discord                     \
+                            gvfs                        \
+                            emacs
+
+    yay -S  brave-bin                   \
+            spotify                     \
+            shell-color-scripts         \
+            pokemon-colorscripts-git    \
+            abntex2                     \
+            asdf-vm
+}
+
+install_themes_packages(){
+    echo
+    echo "============================================="
+    echo "==========Installing theme packages=========="
+    echo "============================================="
+    echo
+
+    sudo pacman --needed -S adwaita-cursors     \
+                            adwaita-icon-theme  \
+                            arc-gtk-theme       \
+                            breeze              \
+                            papirus-icon-theme  \
+                            breeze-icons
+
+    yay -S  sweet-gtk-theme-dark
+}
+
+install_audio_packages(){
+    echo
+    echo "============================================="
+    echo "==========Installing audio packages=========="
+    echo "============================================="
+    echo
+    sudo pacman --needed -S pipewire        \
+                            pipewire-alsa   \
+                            pipewire-audio  \
+                            pipewire-jack   \
+                            pipewire-pulse
+
+}
+
+install_notebook_packages(){
+    echo
+    echo "============================================="
+    echo "===========Installing note packages=========="
+    echo "============================================="
+    echo
+    sudo pacman --needed -S blueman     \
+                            bluez       \
+                            bluez-libs  \
+                            bluez-tools \
+                            bluez-utils \
+                            light       \
+                            cbatticon   \
+                            acpi        \
+                            acpid
+
+
+    sudo systemctl enable --now bluetooth.service
+    sudo systemctl enable --now acpid.service
+}
+
+install_qtilewm(){
+    sudo pacman --needed -S qtile           \
+                            python          \
+                            python-psutil   \
+                            python-dateutil
+}
+
+install_my_dotfiles(){
+    echo "Clone dotfile bare-repo"
+    git clone --bare https://github.com/Oriikoreh/dotfiles.git $HOME/dotfiles
+    /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout --force
+    /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+}
+
+install_graphic_drivers(){
+    CHOICE=$(whiptail --title "My personal installation script" --menu "choose graphic driver you want use" 16 100 9 \
+        "1-" "Noveau (NVIDIA)" \
+        "2-" "Intel" \
+        "3-" "AMD" \
+        "4-" "VMware"
+        "5-" "VirtualBox")
+
+    case $CHOICE in
+        "1-")
+            whiptail --title "My personal installation script" --yesno "Do you want install proprietary drivers?" 8 60 && \
+                sudo pacman -S --needed nvidia nvidia-utils || \
+                sudo pacman -S --needed xf86-video-nouveau mesa
+            ;;
+        "2-")
+            sudo pacman -S --needed mesa vulkan-intel
+            whiptail --title "My personal installation script" --yesno "Do you want install xf86-video-intel package?" 8 60 && \
+                sudo pacman -S --needed xf86-video-intel || \
+                echo "Use choose not install the package"
+            ;;
+        "3-")
+            sudo pacman -S --needed xf86-video-amdgpu
+            whiptail --title "My personal installation script" --yesno "Do you want install proprietary drivers?" 8 60 && \
+                yay -S amdgpu-pro-ogl || \
+                sudo pacman -S --needed xf86-video-ati mesa
+
+            ;;
+        "4-")
+            sudo pacman -S --needed xf86-input-vmmouse mesa xf86-video-vmware open-vm-tools
+            sudo systemctl enable --now vmtoolsd.service
+            sudo systemctl enable --now vmware-vmblock-fuse.service
+            ;;
+        "5-")
+            sudo pacman -S --needed virtualbox-guest-utils
+            ;;
+    esac
+}
+
+main() {
+    grep -qs "ID=arch" /etc/os-release || wrong_distro
+
+    wellcome_screen
+
+    echo
+    echo "Sync packages and install libnewt if not installed"
+    sudo pacman --noconfirm --needed -Syyuu libnewt || error "syncing the repos."
+
+    if $(pacman -Q | grep -qs yay); then
+        echo "YAY is already installed"
+    else
+        install_yay
+    fi
+
+    install_fonts_packages
+
+    install_essential_packages
+
+    install_graphic_drivers
+
+    install_audio_packages
+
+    install_theme_packages
+
+    run_in_notebook && install_notebook_packages || echo "This script isn't running in notebook"
+
+    install_qtilewm
+
+    initialize_packages
+
+    install_my_dotfiles
+}
+
+main
