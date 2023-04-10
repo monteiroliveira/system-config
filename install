@@ -61,22 +61,21 @@ install_fonts_packages(){
     echo "==========Installing fonts packages=========="
     echo "============================================="
     echo
-    sudo pacman -S  adobe-source-code-pro-fonts \
-                    adobe-source-sans-fonts     \
-                    awesome-terminal-fonts      \
-                    noto-fonts                  \
-                    noto-fonts-cjk              \
-                    noto-fonts-emoji            \
-                    noto-fonts-extra            \
-                    ttf-powerline               \
-                    ttf-joypixels               \
-                    ttf-jetbrains-mono          \
-                    ttf-croscore                \
-                    ttf-dejavu                  \
-                    ttf-ubuntu-font-family      \
-                    powerline-fonts             \
-                    powerline                   \
-                    fontconfig || error "Somo package can't be installed"
+    sudo pacman --needed -S  adobe-source-code-pro-fonts \
+                             adobe-source-sans-fonts     \
+                             awesome-terminal-fonts      \
+                             noto-fonts                  \
+                             noto-fonts-cjk              \
+                             noto-fonts-emoji            \
+                             noto-fonts-extra            \
+                             ttf-joypixels               \
+                             ttf-jetbrains-mono          \
+                             ttf-croscore                \
+                             ttf-dejavu                  \
+                             ttf-ubuntu-font-family      \
+                             powerline-fonts             \
+                             powerline                   \
+                             fontconfig || error "Somo package can't be installed"
 
     yay -S  ttf-times-new-roman
 }
