@@ -166,7 +166,7 @@ install_essential_packages(){
             asdf-vm
 }
 
-install_themes_packages(){
+install_theme_packages(){
     echo
     echo "============================================="
     echo "==========Installing theme packages=========="
