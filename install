@@ -86,7 +86,7 @@ initialize_packages(){
 
     systemctl --user enable pipewire-pulse.service
 
-    ufw enable
+    sudo ufw enable
     xdg-user-dirs-update
 }
 
