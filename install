@@ -77,7 +77,7 @@ install_fonts_packages(){
                              powerline                   \
                              fontconfig || error "Some package can't be installed"
 
-    if $(pacman -Qq | grep "ttf-times-new-roman"); then
+    if $(pacman -Qq | grep -qs "ttf-times-new-roman"); then
         echo "ttf-times-new-roman is already installed --skipped"
     else
         yay -S  ttf-times-new-roman
@@ -164,37 +164,37 @@ install_essential_packages(){
 
     local YAYPACKAGES
 
-    if $(pacman -Qq | grep "brave-bin"); then
+    if $(pacman -Qq | grep -qs "brave-bin"); then
         echo "brave-bin is already installed --skipped"
     else
         YAYPACKAGES="$YAYPACKAGES brave-bin"
     fi
 
-    if $(pacman -Qq | grep "spotify"); then
+    if $(pacman -Qq | grep -qs "spotify"); then
         echo "spotify is already installed --skipped"
     else
         YAYPACKAGES="$YAYPACKAGES spotify"
     fi
 
-    if $(pacman -Qq | grep "shell-color-scripts"); then
+    if $(pacman -Qq | grep -qs "shell-color-scripts"); then
         echo "shell-color-scripts is already installed --skipped"
     else
         YAYPACKAGES="$YAYPACKAGES shell-color-scripts"
     fi
 
-    if $(pacman -Qq | grep "pokemon-colorscripts-git"); then
+    if $(pacman -Qq | grep -qs "pokemon-colorscripts-git"); then
         echo "pokemon-colorscripts-git is already installed --skipped"
     else
         YAYPACKAGES="$YAYPACKAGES pokemon-colorscripts-git"
     fi
 
-    if $(pacman -Qq | grep "abntex2"); then
+    if $(pacman -Qq | grep -qs "abntex2"); then
         echo "abntex2 is already installed --skipped"
     else
         YAYPACKAGES="$YAYPACKAGES abntex2"
     fi
 
-    if $(pacman -Qq | grep "asdf-vm"); then
+    if $(pacman -Qq | grep -qs "asdf-vm"); then
         echo "abntex2 is already installed --skipped"
     else
         YAYPACKAGES="$YAYPACKAGES asdf-vm"
