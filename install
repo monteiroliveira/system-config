@@ -76,7 +76,7 @@ install_fonts_packages(){
                     ttf-ubuntu-font-family      \
                     powerline-fonts             \
                     powerline                   \
-                    fontconfig
+                    fontconfig || error "Somo package can't be installed"
 
     yay -S  ttf-times-new-roman
 }
@@ -102,7 +102,7 @@ install_xorg(){
                             xorg-xrandr             \
                             xorg-xrdb               \
                             xorg-xset               \
-                            xorg-xsetroot
+                            xorg-xsetroot || error "Somo package can't be installed"
 }
 
 install_essential_packages(){
@@ -157,7 +157,7 @@ install_essential_packages(){
                             ranger                      \
                             discord                     \
                             gvfs                        \
-                            emacs
+                            emacs || error "Somo package can't be installed"
 
     yay -S  brave-bin                   \
             spotify                     \
@@ -179,7 +179,7 @@ install_themes_packages(){
                             arc-gtk-theme       \
                             breeze              \
                             papirus-icon-theme  \
-                            breeze-icons
+                            breeze-icons || error "Somo package can't be installed"
 
     yay -S  sweet-gtk-theme-dark
 }
@@ -194,7 +194,7 @@ install_audio_packages(){
                             pipewire-alsa   \
                             pipewire-audio  \
                             pipewire-jack   \
-                            pipewire-pulse
+                            pipewire-pulse || error "Somo package can't be installed"
 
 }
 
@@ -212,7 +212,7 @@ install_notebook_packages(){
                             light       \
                             cbatticon   \
                             acpi        \
-                            acpid
+                            acpid || error "Somo package can't be installed"
 
 
     sudo systemctl enable --now bluetooth.service
@@ -223,7 +223,7 @@ install_qtilewm(){
     sudo pacman --needed -S qtile           \
                             python          \
                             python-psutil   \
-                            python-dateutil
+                            python-dateutil || error "Somo package can't be installed"
 }
 
 install_my_dotfiles(){
