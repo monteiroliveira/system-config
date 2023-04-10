@@ -78,8 +78,7 @@ install_fonts_packages(){
                     powerline                   \
                     fontconfig
 
-    yay -S  nerd-fonts-complete  \
-            ttf-times-new-roman
+    yay -S  ttf-times-new-roman
 }
 
 initialize_packages(){
