@@ -398,6 +398,8 @@ main() {
     initialize_packages
 
     install_my_dotfiles
+
+    end_screen
 }
 
 main
