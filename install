@@ -25,8 +25,8 @@ error(){
     clear; printf "ERROR! : %s\\n" "$1" >&2; exit 1;
 }
 
-wellcome_screen(){
-    whiptail --title "My personal installation script" --msgbox "This script will install my personal system configuration and packages in arch lixux distros, that script is for my personal use but any persol can use this script. WARNING: Run this script at your own risk. Your sudo password is only for installing packages and enable in systemd..\\n" 16 80
+welcome_screen(){
+    whiptail --title "My personal installation script" --msgbox "This script will install my personal system configuration and packages in arch lixux distros, that script is for my personal use but any person can use this script.\\n WARNING: Run this script at your own risk. Your sudo password is only for installing packages and enable in systemd.\\n" 16 80
 }
 
 end_screen(){
@@ -369,7 +369,7 @@ install_graphic_drivers(){
 main() {
     grep -qs "ID=arch" /etc/os-release || wrong_distro
 
-    wellcome_screen
+    welcome_screen
 
     echo
     echo "Sync packages and install libnewt if not installed"
