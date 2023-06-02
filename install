@@ -181,6 +181,7 @@ install_essential_packages(){
                             fish                        \
                             exa                         \
                             bat                         \
+			    bat-extras                  \
                             fd                          \
                             ripgrep                     \
                             lfs                         \
@@ -199,6 +200,7 @@ install_essential_packages(){
                             texlive-bin                 \
                             texlive-core                \
                             texlive-latexextra          \
+			    texlive-bibtexextra         \
                             polkit                      \
                             thunar                      \
                             htop                        \
@@ -206,6 +208,9 @@ install_essential_packages(){
                             ranger                      \
                             discord                     \
                             gvfs                        \
+			    man-pages                   \
+			    man-db                      \
+			    graphviz                    \
                             emacs || error "Some package can't be installed"
 
     yay --needed -S brave-bin               \
@@ -215,6 +220,26 @@ install_essential_packages(){
                     abntex2                 \
                     asdf-vm
 
+}
+
+install_lsps(){
+    sudo pacman --needed -S haskell-language-server    \
+	 rust-analyzer              \
+	 clang                      \
+	 python-lsp-server
+}
+
+install_programming_laguage_support(){
+    sudo pacman --needed -S python\
+	 python-pip           \
+	 python-setuptools    \
+	 python-virtualenv    \
+	 cmake                \
+	 rust                 \
+	 #rustup              \
+	 cabal-install        \
+	 stack                \
+	 ghc
 }
 
 install_theme_packages(){
@@ -354,6 +379,10 @@ main() {
     install_qtilewm
 
     initialize_packages
+
+    install_programming_laguage_support
+
+    install_lsps
 
     install_my_dotfiles
 
