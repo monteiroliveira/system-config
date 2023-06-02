@@ -123,7 +123,7 @@ install_fonts_packages(){
                              otf-firamono-nerd           \
                              otf-droid-nerd              \
                              otf-codenewroman-nerd       \
-                             otf-cascadia-code-nerd      \
+                             ttf-cascadia-code-nerd      \
                              otf-aurulent-nerd           \
                              fontconfig || error "Some package can't be installed"
 
